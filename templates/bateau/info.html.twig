@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ATLANTIK - Inscription{% endblock %}
+
+{% block body %}
+  <br>
+
+  <section class="bateau container">
+
+    <br>
+
+    <div class="row app_all">
+      <div class="col-12">
+        <div class="app_top" style="background-color: grey;">
+          <h2 style="padding:14px; margin-bottom: 0;">Compagnie Altantik</h2>
+        </div>
+      </div>
+      <div class="col-4" style="padding-right: 0px;">
+        <div class="app_left" style="background-color: grey; margin: 0;">
+          {% for secteur in secteurs %}
+            <a onclick="DisplayBlockHidden()">
+              <button type="submit" class="btn" name="secteur" style="width:100%;border: 1px solid white;">{{ secteur.libelleSecteur }}</button>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-8" style="padding-left: 0px;">
+          <div class="app_right">
+
+            <div id="DisplayBlockHidden" class="app_right">
+
+              <h4>Sélectionner la liaison, et la date shouaitée</h4>
+
+              <form id="FORMREPONSE" action="" method="POST">
+                  {% for liaison in liaisons %}
+                    {% set portDepart = liaison.portDepart %}
+                    {% set portDepart = liaison.portArrivee %}
+                      {% if portDepart == liaison.portArrivee %}
+                        <select>
+                          <option value="">{{ liaison.portDepart }} - {{ liaison.portArrivee }}</option>
+                        </select><br>
+                      {% endif %}
+                  {% endfor %}
+                  <input id="BOUTREP"type="submit" name="submit">
+              </form>
+
+            </div>
+          </div>
+      </div>
+    </div>
+
+  </section>
+{% endblock %}
+
+{% block javascripts %}
+  <script type="text/javascript">
+    function DisplayBlockHidden() {
+      document.getElementById("DisplayBlockHidden").style.display = "block";
+    }
+    function DisplayBlockHiddenHome() {
+      document.getElementById("DisplayBlockHiddenHome").style.display = "block";
+    }
+  </script>
+{% endblock %}

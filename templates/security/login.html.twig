@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ATLANTIK - Connexion{% endblock %}
+
+{% block body %}
+  <br>
+
+  <section class="bateau text-center">
+
+    <form class="form-signin" action="{{ path('security_login') }}" method="post">
+      <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Veuillez vous connecter</h1>
+      <label for="inputEmail" class="sr-only">Adresse email</label>
+      <input type="email" id="inputEmail" class="form-control" placeholder="Adresse email ..." required name="_username">
+      <label for="inputPassword" class="sr-only">Mot de passe</label>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe ..." required name="_password">
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Se souvenir de moi
+        </label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Connexion</button>
+    </form>
+    <form class="form-signin" action="{{ path('security_registration') }}" method="post">
+      <p>Je n'ai pas de compte</p>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Inscription</button>
+      <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
+    </form>
+
+
+  </section>
+{% endblock %}

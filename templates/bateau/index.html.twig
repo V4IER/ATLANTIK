@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Application{% endblock %}
+
+{% block body %}
+  <br>
+
+  <section class="bateau container">
+
+    <br>
+
+    <div class="row app_all">
+      <div class="col-12">
+        <a onclick="DisplayBlockYes()">
+          <div class="app_top" style="background-color: grey;">
+            <h2 style="padding:14px; margin-bottom: 0;">Compagnie Altantik</h2>
+          </div>
+        </a>
+      </div>
+      <div class="col-4" style="padding-right: 0px;">
+        <div class="app_left" style="background-color: grey; margin: 0;">
+          {% for secteur in secteurs %}
+            <form class="" action="" method="post">
+              <input type="text" name="idSecteur" hidden value="{{ secteur.idSecteur }}">
+              <button type="submit" class="btn" name="secteur" style="width:100%;border: 1px solid white;">{{ secteur.libelleSecteur }}</button>
+            </form>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-8" style="padding-left: 0px;">
+          <div class="app_right">
+
+            {% if requette == "POST" %}
+
+                <div id="DisplayBlockHidden" class="app_right p-4">
+
+                  <h4>Sélectionner la liaison, et la date shouaitée</h4>
+
+                  <form id="FORMREPONSE" action="" method="POST">
+                    <select class="browser-default custom-select" style="border: 1px solid orange;">
+                        {% for liaison in liaisons %}
+                          {% if idSecteur == liaison.idSecteur %}
+                            <option value="Liaison">{{ liaison.portDepart }} - {{ liaison.portArrivee }}</option>
+                          {% endif %}
+                        {% endfor %}
+                    </select><br>
+                    <br>
+                    <select class="browser-default custom-select" style="border: 1px solid orange;">
+                      <option value="Liaison">{{ "now"|date("m/d/Y") }}</option>
+                    </select><br>
+                    <br>
+                    <button class="btn btn-warning" type="button" name="button">Afficher les traversés</button>
+                  </form>
+
+                </div>
+
+            {% endif %}
+
+          </div>
+      </div>
+    </div>
+
+  </section>
+{% endblock %}
+
+{% block javascripts %}
+  <script type="text/javascript">
+    function DisplayBlockHidden() {
+      document.getElementById("DisplayBlockHidden").style.display = "block";
+    }
+    function DisplayBlockYes() {
+      document.getElementById("DisplayBlockHidden").style.display = "none";
+    }
+  </script>
+{% endblock %}
