@@ -51,12 +51,6 @@ h1,h2,h3,h4 {
   height: 100%;
 }
 
-#DisplayBlockHiddenHome{
-  display: none;
-  background-color:white;
-  height: 100%;
-}
-
 #DisplayBlockHidden h4{
   color: black;
 }
